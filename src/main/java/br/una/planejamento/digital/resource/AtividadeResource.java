@@ -2,7 +2,6 @@ package br.una.planejamento.digital.resource;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,41 +13,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.una.planejamento.digital.model.Atividade;
-import br.una.planejamento.digital.repository.Atividades;
+import br.una.planejamento.digital.service.AtividadeService;
 
 @RestController
 @RequestMapping("/api/v1/atividades")
 public class AtividadeResource {
 	
 	@Autowired
-	private Atividades atividades;
+	private AtividadeService atividadeService;
 	
 	@GetMapping
 	public List<Atividade> listar() {
-		return atividades.findAll();
+		return atividadeService.listar();
 	}
 	
 	@GetMapping("/{id}")
 	public Atividade buscar(@PathVariable Long id) {
-		return atividades.findOne(id);
+		return atividadeService.buscar(id);
 	}
 	
 	@PostMapping
 	public Atividade criar(@RequestBody Atividade atividade) {
-		return atividades.save(atividade);
+		return atividadeService.criar(atividade);
 	}
 	
 	@PutMapping("/{id}")
 	public Atividade alterar(@PathVariable Long id, @RequestBody Atividade atividade) {
-		Atividade existente = atividades.findOne(id);
-		
-		BeanUtils.copyProperties(atividade, existente, "id");
-		
-		return atividades.save(existente);
+		return atividadeService.atualizar(atividade);
 	}
 	
 	@DeleteMapping("/{id}")
 	public void remover(@PathVariable Long id) {
-		atividades.delete(atividades.findOne(id));
+		atividadeService.remover(id);
 	}
 }
