@@ -1,0 +1,8 @@
+--- Atividade Tecnologias WEB 19/Set ---
+1) Criar/Importar a classe Roteiro.java para o projeto
+(https://github.com/edussm/planejamento-digital/blob/master/src/main/java/br/una/planejamento/digital/model/Roteiro.java)
+
+2) Desenvolver os módulos repository, service e controller para a entidade Roteiro
+
+3) Testar GET, POST, PUT e Delete na interface do swagger 
+(http://localhost:8080/swagger-ui.html)
