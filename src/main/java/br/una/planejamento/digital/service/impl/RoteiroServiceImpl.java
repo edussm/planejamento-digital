@@ -14,7 +14,7 @@ import br.una.planejamento.digital.service.RoteiroService;
 public class RoteiroServiceImpl implements RoteiroService {
 	@Autowired
 	private Roteiros roteiros;
-	
+
 	@Override
 	public List<Roteiro> listar() {
 		return roteiros.findAll();

@@ -50,7 +50,7 @@ public class Atividade implements Serializable {
 
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.class.toString();
+		return ReflectionToStringBuilder.toString(this);
 	}
 
 	

@@ -4,12 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Roteiro implements Serializable {
@@ -26,6 +30,10 @@ public class Roteiro implements Serializable {
 	private Date dataInicio;
 
 	private Date dataFim;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
+	private Usuario usuario;
 
 	public Long getId() {
 		return id;
@@ -59,9 +67,17 @@ public class Roteiro implements Serializable {
 		this.dataFim = dataFim;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.class.toString();
+		return ReflectionToStringBuilder.toString(this);
 	}
 
 }
