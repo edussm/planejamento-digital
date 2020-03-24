@@ -1,3 +1,10 @@
+resources:
+  - name: myAppRepo
+    type: GitRepo
+    configuration:
+      gitProvider: myGitHub
+      path: edussm/planejamento-digital
+
 pipelines:
   - name: pipeline_hello_world
     configuration:
